@@ -1,14 +1,52 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-buttons end>
+            <button ion-button (click)="salir()">Salir</button>
+        </ion-buttons>
+        <ion-title>Productos</ion-title>
+    </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v3">docs</a> will be your guide.
-  </p>
+    <p>Bienvenido : <strong>{{ user.email }}</strong></p>
+    <ion-card>
+        <ion-card-content>
+            <ion-item>
+                <ion-label>Titulo</ion-label>
+                <ion-input [(ngModel)]="productos.nombre"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Descripcion</ion-label>
+                <ion-input [(ngModel)]="productos.descripcion"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Imagen</ion-label>
+                <ion-input [(ngModel)]="productos.img"></ion-input>
+            </ion-item>
+            <ion-item>
+                <button ion-button (click)="agregar()">Añadir</button>
+            </ion-item>
+        </ion-card-content>
+    </ion-card>
+    
+    <hr>
+
+    <h2>productos</h2>
+    <ion-list>
+        <ion-item *ngFor="let item of arrayColeccionTareas" (click)="selectProduct(item)">
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-6>
+                        <h2>{{ item.data.nombre }}</h2>
+                        <h2>{{ item.data.descripcion }}</h2>
+                        <button ion-button (click)="eliminarProduct(item)" color="danger">Eliminar Producto</button>
+                    </ion-col>
+                    <ion-col col-6 text-right>
+                        <img src="{{ item.data.img }}" width="50%">
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-item>
+    </ion-list>
+
 </ion-content>
